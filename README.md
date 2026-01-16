@@ -52,3 +52,235 @@ class Car {
 $car1 = new Car(); // make a object
 $car1->drive(); // for that object call drive
 ```
+
+
+$this operator: $this, as the '$' sign suggest, is an object. 
+$this represents the current object of a class. It is used to access non-static members of a class(public, private, protected, etc., except the static member)
+
+
+
+### The __construct() Function
+
+
+Think of __construct() like a starter kit for your object.
+Whenever you make a new object, PHP automatically runs __construct() to set it up. You don’t have to call anything extra.
+
+```
+
+<?php
+class Fruit {
+    public $name;
+    public $color;
+
+    // This runs automatically when we make a new Fruit
+    public function __construct($name, $color) {
+        $this->name = $name;
+        $this->color = $color;
+    }
+}
+
+// Make a new Fruit – constructor runs automatically
+$banana = new Fruit("Banana", "Yellow");
+
+echo "Fruit: $banana->name, Color: $banana->color";
+?>
+
+
+
+```
+
+
+### PHP - The __destruct() Function
+
+The PHP __destruct() function is a special method within a class that is automatically called when an object is destroyed or when the script finishes execution.
+
+The PHP __destruct() function is the opposite of the PHP __construct() function.
+
+If you create a __destruct() function, PHP will automatically call this function at the end of the script.
+
+`Notice that the __destruct() function starts with two underscores (__)!
+`
+
+
+##### Real situation:
+
+Your app connects to a database.
+If you don’t close it → server gets overloaded.
+
+
+
+
+```
+
+<?php
+class Database {
+    private $conn;
+
+    public function __construct() {
+        $this->conn = "DB Connected";
+        echo "Database opened \n";
+    }
+
+    public function __destruct() {
+        $this->conn = null; // close connection
+        echo "Database closed \n";
+    }
+}
+
+$db = new Database();
+echo "Running queries...\n";
+
+for($i= 0;$i<=5;$i++) {
+    echo $i;
+    echo PHP_EOL;
+}
+?>
+// output be like 
+Database opened // first construction will call 
+Running queries... // Then just run the whole scrpit 
+0
+1
+2
+3
+4
+5
+Database closed // After the script is end it will called the destruction. Even if you forget to close the DB manually, PHP does it for you at the end.
+````
+
+
+### Why destructor helps:
+Prevents:
+- file corruption
+- memory leaks
+- locked files
+
+
+
+
+
+
+### PHP - Access Modifiers
+
+Properties and methods can have access modifiers (or visibility keywords) that control where they can be accessed.
+
+- **public** - the property or method can be accessed from everywhere. This is default
+- **protected**- the property or method can be accessed within the class and by classes derived from that class.
+- **private**- the property or method can ONLY be accessed within the same class where they are defined.
+
+
+
+**Note: If no acces modifier is specified, it will be set to public.**
+
+
+### Public Access Modifier
+
+- The public access modifier allows class properties or methods to be accessed from everywhere.
+- In the following example, the $conn property and the get_details() method are accessible from outside the class.
+
+
+
+```
+<?php
+class Database {
+    public $conn;
+    public $host;
+
+    public function __construct() {
+        $this->conn = "DB Connected\n";
+        echo "Database opened \n";
+    }
+   public function getdetails() {
+     $this->host = '127.0.0.1:8080';
+     echo "Database Host is : " . $this->host . "\n";
+    }
+
+    public function __destruct() {
+        $this->conn = null; // close connection
+        echo "Database closed \n";
+    }
+}
+
+$db = new Database();
+echo $db->conn;
+$db->getdetails();
+
+echo "Running queries...\n";
+
+// output
+
+Database opened 
+DB Connected
+Database Host is : 127.0.0.1:8080 // public function, but we can access outsite class.
+Running queries...
+Database closed 
+
+```
+
+### Private Access Modifier
+The private access modifier allows class properties or methods ONLY to be accessed within the same class where they are defined.
+In the following example, the $conn property is private and cannot be accessed directly.
+
+```
+<?php
+class Database {
+    private $conn;
+    private $host;
+
+    public function __construct() {
+        $this->conn = "DB Connected\n";
+        echo "Database opened \n";
+    }
+   public function getdetails() {
+     $this->host = '127.0.0.1:8080';
+     echo "Database Host is : " . $this->host . "\n";
+    }
+
+    public function __destruct() {
+        $this->conn = null; // close connection
+        echo "Database closed \n";
+    }
+}
+
+$db = new Database();
+echo $db->conn; // got an error **caught Error: Cannot access private property Database::$conn **
+$db->getdetails();
+
+echo "Running queries...\n";
+
+
+
+```
+
+
+ ### **protected means:**
+
+- Accessible inside the same class
+- Accessible in child (derived) classes
+- NOT accessible outside the class
+```
+<?php
+class Database {
+    protected $host;
+
+    public function __construct() {
+        $this->host = "127.0.0.1:8080";
+        echo "Database created\n";
+    }
+}
+
+class MySQL extends Database {
+    public function showHost() {
+        echo "Database Host: " . $this->host . "\n";
+    }
+}
+
+$db = new MySQL();
+$db->showHost();      //  allowed (child class accessing protected property)
+echo $db->host;       // ERROR: Cannot access protected property
+?>
+
+```
+
+
+
+
