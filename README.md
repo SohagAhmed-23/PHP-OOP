@@ -317,4 +317,56 @@ new greeting();
 ```
 
 
+### The 4 pillars of object oriented programming
+In PHP OOP, the 4 pillars are basically the rules that make your code organized, reusable, and not a nightmare later.
+
+The 4 pillars of OOP are:
+- Encapsulation
+- Abstraction
+- Inheritance
+- Polymorphism
+
+### Encapsulation
+**What it meanse**
+Encapsulation is about wrapping data (variables) and methods together in a class and controlling access to them.
+- In simple words:
+- “You can’t touch my data directly. Use my methods.”
+
+****Why it’s important
+Protects data from being changed accidentally
+- Makes code more secure
+- Easier to debug and maintain
+- 
+**How PHP does this**
+Using access modifiers:
+- public → accessible everywhere
+- private → accessible only inside the class
+- protected → accessible inside class + child classes
+```
+class BankAccount {
+    private $balance = 0;
+
+    public function deposit($amount) {
+        if ($amount > 0) {
+            $this->balance += $amount;
+        }
+    }
+
+    public function getBalance() {
+        return $this->balance;
+    }
+}
+
+$account = new BankAccount();
+$account->deposit(100);
+
+// Error: Cannot access private property
+// echo $account->balance;
+
+echo $account->getBalance(); 
+// You hide the data and only allow access through methods
+```
+
+
+
 
