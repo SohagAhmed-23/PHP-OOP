@@ -366,6 +366,129 @@ $account->deposit(100);
 echo $account->getBalance(); 
 // You hide the data and only allow access through methods
 ```
+### Abstraction
+**What it means**
+Abstraction means showing only what is necessary and hiding the internal details.
+“You don’t need to know how it works, just how to use it.”
+- An abstract class is like a blueprint.
+- It defines rules, but doesn’t finish the job.
+**The parent class says what must be done,**
+**The child class decides how to do it**
+  Key points
+
+##### An abstract class must have at least one abstract method
+An abstract method:
+- Has a name
+- Has no body (no code inside)
+- Child classes MUST implement all abstract methods
+- You cannot create an object of an abstract class
+
+```
+abstract class Animal {
+    abstract public function makeSound();
+}
+```
+here:
+- Animal is abstract
+- makeSound() has no implementation
+- Every child must define **makeSound()**
+  
+```
+class Dog extends Animal {
+    public function makeSound() {
+        echo "Bark";
+    }
+}
+
+class Cat extends Animal {
+    public function makeSound() {
+        echo "Meow";
+    }
+}
+
+```
+**using this**
+
+```
+$dog = new Dog();
+$dog->makeSound(); // Bark
+
+$cat = new Cat();
+$cat->makeSound(); // Meow
+
+```
+Error
+```
+$animal = new Animal(); // Error cant call the abstract class
+
+```
+
+**Why abstract classes are useful**
+- Force structure and rules
+- Avoid missing methods in child classes
+- Useful in large projects
+- Helps with abstraction (one of the OOP pillars)
+**An abstract class is a class that cannot be instantiated and is used to force child classes to implement abstract methods.**
+
+###### Real-World Example: Payment System(abstraction) 
+Imagine an app that supports multiple payment methods:
+- Credit Card
+- PayPal
+- Google Pay
+All payments must follow one rule:
+Every payment method must have a pay() function
+
+```
+abstract class Payment {
+    abstract public function pay($amount);
+}
+```
+**This says:**
+- Every payment must have pay().
+- Parent doesn’t care how it’s done.
+  
+```
+// Credit Card Payment
+class CreditCard extends Payment {
+    public function pay($amount) {
+        echo "Paid $amount using Credit Card";
+    }
+}
+
+// PayPal Payment
+class Paypal extends Payment {
+    public function pay($amount) {
+        echo "Paid $amount using PayPal";
+    }
+}
+// Using the System
+$payments = [
+    new CreditCard(),
+    new Paypal()
+];
+
+foreach ($payments as $payment) {
+    $payment->pay(500);
+}
+// Output
+// Paid 500 using Credit Card
+// Paid 500 using PayPal
+
+```
+**Why this is REAL-WORLD useful**
+- You can add new payment methods later (Apple Pay, UPI, etc.)
+- No need to change existing code
+- Enforces consistency
+- Clean, scalable design
+Real-Life Analogy 
+
+**Think of an ATM:**
+- ATM says: “You must enter a PIN”
+- It doesn’t care how the bank verifies it
+- Each bank handles it differently
+
+
+  
 
 
 
