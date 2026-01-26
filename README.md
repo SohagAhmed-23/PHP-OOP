@@ -317,7 +317,7 @@ new greeting();
 ```
 
 
-### The 4 pillars of object oriented programming
+## The 4 pillars of object oriented programming
 In PHP OOP, the 4 pillars are basically the rules that make your code organized, reusable, and not a nightmare later.
 
 The 4 pillars of OOP are:
