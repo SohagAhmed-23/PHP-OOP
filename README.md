@@ -577,6 +577,7 @@ class French extends Person
 
 ```
 Third, define a function called greeting() that accepts an array of Person objects and calls the greet() method of each object:
+
 ```
 <?php
 //...
@@ -586,7 +587,6 @@ function greeting($people)
 		echo $person->greet() . '<br>';
 	}
 }
-  ```
 
 ```
 
