@@ -487,6 +487,47 @@ Real-Life Analogy
 - It doesn’t care how the bank verifies it
 - Each bank handles it differently
 
+### interface
+##### What is an Interface? (PHP OOP)?
+An interface is like a pure rule book.
+- It only says what methods a class must have.
+- It does not say how they work.
+So when a class implements an interface, it must write code for every method inside it.
+**Key points (easy)**
+- Interface has only method declarations
+- No method body
+- All methods are public
+- A class can implement multiple interfaces
+- Defined using the interface keyword
+- Used with the implements keyword
+```
+interface Animal {
+    public function makeSound();
+}
+
+
+class Dog implements Animal {
+    public function makeSound() {
+        echo "Bark";
+    }
+}
+$dog = new Dog();
+$dog->makeSound(); // Bark
+```
+
+**Abstract Class vs Interface (Super Simple)**
+🔹 Abstract Class
+- Can have rules + some working code
+- Can have properties (variables)
+- A class can extend only ONE abstract class
+- Used when classes are closely related
+
+🔹 Interface
+- Has only rules, no working code
+- No properties
+- A class can implement MULTIPLE interfaces
+- Used when classes are not related, but must follow the same rules.
+
 
   
 
