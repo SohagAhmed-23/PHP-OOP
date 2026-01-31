@@ -550,7 +550,7 @@ abstract class Person
 Second, define the English, German, and French classes that extend the Person class. The greet() method of each class returns a different greeting message.
 ```
 <?php
-// ...
+
 class English extends Person
 {
 	public function greet()
@@ -580,16 +580,12 @@ Third, define a function called greeting() that accepts an array of Person objec
 
 ```
 <?php
-//...
 function greeting($people)
 {
 	foreach ($people as $person) {
 		echo $person->greet() . '<br>';
 	}
 }
-
-```
-<?php
 $people = [
 	new English(),
 	new German(),
@@ -602,7 +598,7 @@ greeting($people);
 
 
 
-## **What is Inheritance? (Simple Definition)**
+## What is Inheritance? (Simple Definition)
 
 Inheritance means:
 A child class gets properties and methods from a parent class.
@@ -612,11 +608,12 @@ A child class gets properties and methods from a parent class.
 
 **Real-Life Example (Very Easy)**
 
-**Think of a Family **
+**Think of a Family**
 - Parent has: surname, house, habits
 - Child automatically gets them
 - A child can also have their own things
 - That’s inheritance.
+  
 ```
 class ParentClass {
     // parent code
@@ -627,8 +624,9 @@ class ChildClass extends ParentClass {
 }
 
 ```
-```
 
+
+```
 class Animal {
     public function eat() {
         echo "Animal is eating<br>";
@@ -646,8 +644,9 @@ class Dog extends Animal {
 $dog = new Dog();
 $dog->eat();   // inherited
 $dog->bark();  // own method
-
 ```
+
+
 **Method Overriding**
 ```
 class Animal {
@@ -678,10 +677,15 @@ In OOP, inheritance is commonly explained in 5 types:
 - Hierarchical Inheritance
 - Multiple Inheritance
 - Hybrid Inheritance
-Important PHP note:
+
+
+
+**Note: Important PHP note:**
 - PHP supports Single, Multilevel, Hierarchical
 - PHP does NOT support multiple inheritance with classes
 - PHP uses interfaces & traits to handle that
+
+  
 
 **Single Inheritance**
 - One child inherits from one parent.
