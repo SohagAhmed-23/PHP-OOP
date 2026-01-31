@@ -589,9 +589,7 @@ function greeting($people)
 }
 
 ```
-
 <?php
-//...
 $people = [
 	new English(),
 	new German(),
@@ -599,9 +597,13 @@ $people = [
 ];
 
 greeting($people);
-
 ```
-**What is Inheritance? (Simple Definition)**
+
+
+
+
+## **What is Inheritance? (Simple Definition)**
+
 Inheritance means:
 A child class gets properties and methods from a parent class.
 - Child reuses parent code
@@ -644,7 +646,6 @@ class Dog extends Animal {
 $dog = new Dog();
 $dog->eat();   // inherited
 $dog->bark();  // own method
-
 
 ```
 **Method Overriding**
