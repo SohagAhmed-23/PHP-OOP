@@ -601,6 +601,186 @@ $people = [
 greeting($people);
 
 ```
+**What is Inheritance? (Simple Definition)**
+Inheritance means:
+A child class gets properties and methods from a parent class.
+- Child reuses parent code
+- Child can add new features
+- A child can change a parent's behavior
+
+**Real-Life Example (Very Easy)**
+
+**Think of a Family **
+- Parent has: surname, house, habits
+- Child automatically gets them
+- A child can also have their own things
+- That’s inheritance.
+```
+class ParentClass {
+    // parent code
+}
+
+class ChildClass extends ParentClass {
+    // child code
+}
+
+```
+```
+
+class Animal {
+    public function eat() {
+        echo "Animal is eating<br>";
+    }
+}
+class Dog extends Animal {
+    public function bark() {
+        echo "Dog is barking<br>";
+    }
+}
+//Dog inherits eat()
+
+// Dog has its own method bark()
+
+$dog = new Dog();
+$dog->eat();   // inherited
+$dog->bark();  // own method
+
+
+```
+**Method Overriding**
+```
+class Animal {
+    public function sound() {
+        echo "Some sound<br>";
+    }
+}
+
+class Cat extends Animal {
+    public function sound() {
+        echo "Meow<br>";
+    }
+}
+
+$cat = new Cat();
+$cat->sound(); // Meow
+
+```
+
+Inheritance allows a class to acquire properties and methods of another class, promoting code reuse and hierarchy.
+
+
+**Types of Inheritance (Conceptually)**
+
+In OOP, inheritance is commonly explained in 5 types:
+- Single Inheritance
+- Multilevel Inheritance
+- Hierarchical Inheritance
+- Multiple Inheritance
+- Hybrid Inheritance
+Important PHP note:
+- PHP supports Single, Multilevel, Hierarchical
+- PHP does NOT support multiple inheritance with classes
+- PHP uses interfaces & traits to handle that
+
+**Single Inheritance**
+- One child inherits from one parent.
+- Dog → Animal
+
+``` 
+class Animal {
+    public function eat() {
+        echo "Eating<br>";
+    }
+}
+
+class Dog extends Animal {
+    public function bark() {
+        echo "Bark<br>";
+    }
+}
+
+// Dog inherits Animal
+// One parent → one child
+```
+**Multilevel Inheritance**
+- A class inherits from a class that already inherited another class.
+- Animal → Mammal → Dog
+
+```
+class Animal {
+    public function eat() {
+        echo "Eating<br>";
+    }
+}
+
+class Mammal extends Animal {
+    public function walk() {
+        echo "Walking<br>";
+    }
+}
+
+class Dog extends Mammal {
+    public function bark() {
+        echo "Bark<br>";
+    }
+}
+// Chain inheritance
+// Grandparent → parent → child
+
+```
+
+**Hierarchical Inheritance**
+- Multiple child classes inherit from one parent.
+- Animal → Dog
+- Animal → Cat
+- Animal → Bird
+
+```
+class Animal {
+    public function eat() {
+        echo "Eating<br>";
+    }
+}
+
+class Dog extends Animal {
+    public function bark() {
+        echo "Bark<br>";
+    }
+}
+
+class Cat extends Animal {
+    public function meow() {
+        echo "Meow<br>";
+    }
+}
+
+```
+**Multiple Inheritance**
+- One child inherits from multiple parents.
+
+```
+interface A {
+    public function methodA();
+}
+
+interface B {
+    public function methodB();
+}
+
+
+class C implements A, B {
+    public function methodA() {}
+    public function methodB() {}
+}
+
+```
+
+**Hybrid Inheritance**
+- Combination of more than one inheritance type.
+- Hierarchical + Multilevel
+
+
+
 
 
 
