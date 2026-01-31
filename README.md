@@ -528,9 +528,79 @@ $dog->makeSound(); // Bark
 - A class can implement MULTIPLE interfaces
 - Used when classes are not related, but must follow the same rules.
 
+### PHP Polymorphism
+What is polymorphism?
+Polymorphism is a Greek word that literally means many forms. In object-oriented programming, polymorphism is closely related to inheritance.
+Polymorphism allows objects of different classes to respond differently based on the same message.
+Polymorphism helps you create a generic framework that takes the different object types that share the same interface.
 
-  
+**PHP polymorphism using an abstract class **
 
+First, define an abstract class named Person that has an abstract method called greet().
+```
+<?php
+
+abstract class Person
+{
+	abstract public function greet();
+}
+
+```
+
+Second, define the English, German, and French classes that extend the Person class. The greet() method of each class returns a different greeting message.
+```
+<?php
+// ...
+class English extends Person
+{
+	public function greet()
+	{
+		return 'Hello!';
+	}
+}
+
+class German extends Person
+{
+	public function greet()
+	{
+		return 'Hallo!';
+	}
+}
+
+class French extends Person
+{
+	public function greet()
+	{
+		return 'Bonjour!';
+	}
+}
+
+```
+Third, define a function called greeting() that accepts an array of Person objects and calls the greet() method of each object:
+```
+<?php
+//...
+function greeting($people)
+{
+	foreach ($people as $person) {
+		echo $person->greet() . '<br>';
+	}
+}
+  ```
+
+```
+
+<?php
+//...
+$people = [
+	new English(),
+	new German(),
+	new French()
+];
+
+greeting($people);
+
+```
 
 
 
