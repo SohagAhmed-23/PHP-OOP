@@ -787,5 +787,74 @@ class C implements A, B {
 
 
 
+### Namespace
+Namespaces in PHP are a way of encapsulating items so that name collisions won't occur. When your code expands, there could be a situation where classes, interfaces, functions, or constants might have the same name, causing confusion or errors. Namespaces come to the rescue by grouping these items. 
+
+You declare a namespace using the keyword 'namespace' at the top of your PHP file. Every class, function, or variable under this declaration is a part of the namespace until another namespace is declared, or the file ends. It's like creating a new room in your house solely for storing sports equipment. This makes it easier to find your tennis racket, as you won't have to rummage around in a closet full of mixed items.
+
+```
+The keyword 'use' has two different applications, but the reserved word table links to here.
+
+It can apply to namespace constucts:
+
+file1:
+<?php namespace foo;
+  class Cat { 
+    static function says() {echo 'meoow';}  } ?>
+
+file2:
+<?php namespace bar;
+  class Dog {
+    static function says() {echo 'ruff';}  } ?>
+
+file3:
+<?php namespace animate;
+  class Animal {
+    static function breathes() {echo 'air';}  } ?>
+
+file4:
+<?php namespace fub;
+  include 'file1.php';
+  include 'file2.php';
+  include 'file3.php';
+  use foo as feline;
+  use bar as canine;
+  use animaal as anumate;
+  echo \feline\Cat::says(), "<br />\n";
+  echo \canine\Dog::says(), "<br />\n";
+  echo \animate\Animal::breathes(), "<br />\n";  ?>
+
+Note that 
+felineCat::says()
+should be
+\feline\Cat::says()
+(and similar for the others)
+but this comment form deletes the backslash (why???) 
+
+The 'use' keyword also applies to closure constructs:
+
+<?php function getTotal($products_costs, $tax)
+    {
+        $total = 0.00;
+        
+        $callback =
+            function ($pricePerItem) use ($tax, &$total)
+            {
+                
+                $total += $pricePerItem * ($tax + 1.0);
+            };
+        
+        array_walk($products_costs, $callback);
+        return round($total, 2);
+    }
+?>
+
+
+```
+
+### Magic methods
+PHP Magic Methods, often considered the hooks of the language, provide developers a way to change how objects will respond to particular language constructs. Magic methods are special functions that start with "__" such as __construct(), __destruct(), __call(), __get(), __set() and more. They enable us to perform certain tasks automatically when specific actions occur. For example, __construct() executes when an object is created while __destruct() triggers when an object is no longer needed. Let's see the __construct magic method in action:
+
+
 
 
